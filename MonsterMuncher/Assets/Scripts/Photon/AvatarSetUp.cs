@@ -6,8 +6,8 @@ using Photon.Pun;
 public class AvatarSetUp : MonoBehaviour
 {
     private PhotonView PV;
-    public int characterValue;
-    public GameObject myCharacter;
+    public int monsterValue;
+    public GameObject myMonster;
     public Camera myCamera;
     public AudioListener myAl;
     void Start()
@@ -17,7 +17,7 @@ public class AvatarSetUp : MonoBehaviour
         if(PV.IsMine)
         {
             //Allow all players that have joined the game after the rpc function has been sent to still recieve it            
-            PV.RPC("RPC_AddCharacter", RpcTarget.AllBuffered, MonsterInfo.MI.mySelectedMonster);
+            PV.RPC("RPC_AddMonster", RpcTarget.AllBuffered, MonsterInfo.MI.mySelectedMonster);
         }
         else
         {
@@ -27,14 +27,14 @@ public class AvatarSetUp : MonoBehaviour
     }
 
     [PunRPC]
-    void RPC_AddCharacter(int whichMonster)
+    void RPC_AddMonster(int whichMonster)
     {
         //Save the value passed into this variable 
-        characterValue = whichMonster;
+        monsterValue = whichMonster;
         //Use all characters array and the parameter to determine which character is going to spawn, // PlayerInfo.PI.allCharacters
         //as well as set the position and rotation of this object, //position and rotation
         //set this character as a child to the player avatar, //transform
-        myCharacter = Instantiate(MonsterInfo.MI.allMonsters[whichMonster], transform.position, transform.rotation, transform);
+        myMonster = Instantiate(MonsterInfo.MI.allMonsters[whichMonster], transform.position, transform.rotation, transform);
     }
     void Update()
     {

@@ -16,19 +16,26 @@ public class MainMenuManager : MonoBehaviour
     {
         
     }
-
-    public void StartGame()
+    public void RegisterUser()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void LoginUser()
     {
         SceneManager.LoadScene(2);
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void MultiplayerMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
     public void PlayMultiplayer()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(5);
     }
 
     public void Retry()
