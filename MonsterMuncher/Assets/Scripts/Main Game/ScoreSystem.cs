@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +6,10 @@ using UnityEngine.UI;
 public class ScoreSystem : MonoBehaviour
 {
     public GameObject scoreText;
-    public static int score;
-    void Start()
-    {
-        scoreText = GameObject.FindWithTag("Score");
-    }
+    public static int score;   
 
     void Update()
     {
-        scoreText.GetComponent<Text>().text = "Score:" + " " + score;
+        scoreText.GetComponent<Text>().text = score.ToString();
     }
 }

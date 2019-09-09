@@ -7,20 +7,23 @@ public class UserInfo : MonoBehaviour
 {
     #region Public Variables
     public InputField showUserField;
-    // public InputField showScoreField;
-    public UsernameObj user;
+    public Text showScoreField;
+    //public UsernameObj user;
+    public ScoreObj scoring;
+    
     [SerializeField]
     private bool scoreUploaded;
     #endregion
     #region Private Variables
-    private string addScoreURL = "http://localhost/monstermuncher/addScore.php"; //External Database
+    // private string addScoreURL = "http://localhost/monstermuncher/addScore.php"; //XAMPP Database
+    private string addScoreURL = "https://monstermuncher.000webhostapp.com/addScore.php";
     #endregion
 
     #region Unity Callbacks
     void Start()
     {
-        showUserField.text = user.userName;
-        // showScoreField.text = user.playerScore;
+        showUserField.text = scoring.userName;
+        showScoreField.text = scoring.playerScore;
         scoreUploaded = false;
     }
 
@@ -30,28 +33,15 @@ public class UserInfo : MonoBehaviour
     }
     #endregion
     #region My Functions
-     // public void UploadScore()
-    // {
-    //     if (!scoreUploaded)
-    //     {
-    //         //ScoreStats(showUserField.text, showScoreField.text);
-    //         StartCoroutine(ScoreStats(showUserField.text, showScoreField.text));
-    //         scoreUploaded = true;
-    //     }
-    // }
-
-    /*public void ScoreStats(string playerName, string playerScore)
+    public void UploadScore()
     {
-        WWWForm scoreForm = new WWWForm();
-        //Debug.LogWarning("WWWForm Created"); //Testing
+        if (!scoreUploaded)
+        {
+            StartCoroutine(ScoreStats(showUserField.text, showScoreField.text));
+            scoreUploaded = true;
+        }
+    }
 
-        scoreForm.AddField("playerUsername", playerName);
-        scoreForm.AddField("userScore", playerScore);
-        //Debug.LogWarning("UserScore Field Added"); //Testing
-
-        WWW dbLink = new WWW(addScoreURL, scoreForm);
-        Debug.LogWarning("Score Uploaded to Database");
-    }*/
     private IEnumerator ScoreStats(string username, string playerScore)
     {
         WWWForm scoreForm = new WWWForm();

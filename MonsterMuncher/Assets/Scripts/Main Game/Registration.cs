@@ -12,13 +12,15 @@ public class Registration : MonoBehaviour
     public InputField inputUser;
     public InputField inputPassword;
     [Header ("Create Field")]
-    public UsernameObj username;
+    //public UsernameObj username;
     public ScoreObj score;
 
 
 
-    private string regUserURL = "http://localhost/monstermuncher/registerUser.php";
-    private string loginUserURL = "http://localhost/monstermuncher/loginUser.php";
+    //private string regUserURL = "http://localhost/monstermuncher/registerUser.php";
+    private string regUserURL = "https://monstermuncher.000webhostapp.com/registerUser.php";
+    //private string loginUserURL = "http://localhost/monstermuncher/loginUser.php";
+    private string loginUserURL = "https://monstermuncher.000webhostapp.com/loginUser.php";
     //Unity's inbuilt class to communicate and give information url's
 
     public void CallRegister()
@@ -47,37 +49,37 @@ public class Registration : MonoBehaviour
     }
     public void Login()
     {
-        if (inputUser.text != "" || inputPassword.text != "")
+        if (inputUser.text != "" && inputPassword.text != "")
         {
             StartCoroutine(Login(inputUser.text, inputPassword.text));
             Debug.LogWarning("Started DBLogin");
 
-            username.userName = inputUser.text;
+            score.userName = inputUser.text;
             Debug.LogWarning("Username Stored");
         }
     }
     public IEnumerator Login(string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", password);
+        form.AddField("playerUsername", username);
+        form.AddField("playerPassword", password);
         
-        WWW www = new WWW(loginUserURL, form);
-        yield return www;
+        WWW dbLink = new WWW(loginUserURL, form);
+        yield return dbLink;
         
-        Debug.Log(www.text);
-        if (www.text == "Login Success")
+        Debug.Log(dbLink.text);
+        if (dbLink.text == "Login Success")
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(4);
         }
-        else if (www.text == "User Not Found")
+        else if (dbLink.text == "User Not Found")
         {
             Debug.Log("User Does Not Exist");
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             
             yield return null;
         }
-        else if (www.text == "Password is Wrong")
+        else if (dbLink.text == "Password is Wrong")
         {
             Debug.Log("Password is Incorrect");
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);

@@ -8,6 +8,8 @@ public class TimerCountdown : MonoBehaviour
 {
     public float currentTime;
     public float startingTime;
+    public ScoreObj scoring;
+    
     [SerializeField]
     Text timerCountDownText;
     void Start()
@@ -23,7 +25,8 @@ public class TimerCountdown : MonoBehaviour
         if(currentTime < 0)
         {
             currentTime = 0;
-            SceneManager.LoadScene(2);
+            scoring.playerScore = ScoreSystem.score.ToString();
+            SceneManager.LoadScene(7);
             ScoreReset();
         }
     }
