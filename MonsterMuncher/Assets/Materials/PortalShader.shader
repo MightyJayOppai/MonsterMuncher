@@ -28,7 +28,7 @@ Shader "Unlit/PortalShader"
 
             struct v2f
             {
-                float4 vertex : SV_POSITION;
+                float4 vertex : SV_POSITION;\
                 half2 texcoord : TEXCOORD0;
             };
 

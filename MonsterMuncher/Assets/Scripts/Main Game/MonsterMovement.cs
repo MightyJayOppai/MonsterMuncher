@@ -27,7 +27,7 @@ public class MonsterMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Put this in a void Function
-        monsterRb.MovePosition(transform.position + transform.forward * movementSpeed * Time.deltaTime);
+        monsterRb.velocity=(transform.position + transform.forward * movementSpeed );
     }
     void Update()
     {
