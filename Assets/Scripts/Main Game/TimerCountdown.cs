@@ -26,11 +26,11 @@ public class TimerCountdown : MonoBehaviour
         {
             currentTime = 0;
             scoring.playerScore = ScoreSystem.score.ToString();
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene("Game Over");
             ScoreReset();
         }
     }
-        public void ScoreReset()
+    public void ScoreReset()
     {
         ScoreSystem.score = 0;
     }

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UserInfo : MonoBehaviour
 {
     #region Public Variables
     public InputField showUserField;
-    public Text showScoreField;
+    public TextMeshProUGUI showScoreField;
     //public UsernameObj user;
     public ScoreObj scoring;
     
